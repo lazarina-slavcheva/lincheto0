@@ -1,0 +1,24 @@
+number_of_commands = int(input())
+parking = {}
+for row in range(number_of_commands):
+    command = input()
+    action = command.split(" ")
+    done_action = action[0]
+    if done_action == "register":
+        username = action[1]
+        license_plate_number = action[2]
+        if username not in parking.keys():
+            parking[username] = license_plate_number
+        else:
+            print(f"ERROR: already registered with plate number {license_plate_number}")
+            continue
+        print(f"{username} registered {license_plate_number} successfully")
+    if done_action == "unregister":
+        username = action[1]
+        if username in parking.keys():
+            print(f"{username} unregistered successfully")
+            del parking[username]
+        else:
+            print(f"ERROR: user {username} not found")
+for key, value in parking.items():
+    print(f"{key} => {value}")
